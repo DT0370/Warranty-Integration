@@ -1,0 +1,231 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-07-09 19:41:35.845287",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "customer_details_section",
+  "customer",
+  "customer_email",
+  "state",
+  "column_break_aces",
+  "customer_name",
+  "customer_phone",
+  "address",
+  "address_display",
+  "section_break_egds",
+  "subscription_id",
+  "item_code",
+  "warranty_plan_type",
+  "tv_landing_cost",
+  "column_break_qtwv",
+  "serial_no",
+  "purchase_date",
+  "installation_date",
+  "amended_from",
+  "section_break_vwjy",
+  "warranty_id",
+  "column_break_gnta",
+  "warranty_start_date",
+  "column_break_efwy",
+  "warranty_end_date"
+ ],
+ "fields": [
+  {
+   "fieldname": "customer_details_section",
+   "fieldtype": "Section Break",
+   "label": "Customer Details"
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Customer",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "description": "Pull from Customer-Email",
+   "fetch_from": "customer.email_id",
+   "fieldname": "customer_email",
+   "fieldtype": "Data",
+   "label": "Customer Email",
+   "reqd": 1
+  },
+  {
+   "description": "Pull from Customer-Address",
+   "fetch_from": "address.state",
+   "fieldname": "state",
+   "fieldtype": "Data",
+   "label": "State",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_aces",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "customer.customer_name",
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "label": "Customer Name"
+  },
+  {
+   "description": "Pull from customer-Phone",
+   "fetch_from": "customer.mobile_no",
+   "fieldname": "customer_phone",
+   "fieldtype": "Data",
+   "label": "Customer Phone",
+   "reqd": 1
+  },
+  {
+   "description": "Pull from Customer-Address in HTML",
+   "fetch_from": "customer.customer_primary_address",
+   "fieldname": "address",
+   "fieldtype": "Link",
+   "label": "Address",
+   "options": "Address",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "subscription_id.address_display",
+   "fieldname": "address_display",
+   "fieldtype": "Small Text",
+   "label": "Address Display",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_egds",
+   "fieldtype": "Section Break",
+   "label": "Subscription Details"
+  },
+  {
+   "fieldname": "subscription_id",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Subscription ID",
+   "options": "Delivery Note",
+   "reqd": 1
+  },
+  {
+   "description": "Pulled from the item on the DN where is stock=1",
+   "fieldname": "item_code",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Model",
+   "options": "Item",
+   "reqd": 1
+  },
+  {
+   "default": "2 years",
+   "fieldname": "warranty_plan_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Plan",
+   "options": "\n2 years\n3 years\n4 years",
+   "reqd": 1
+  },
+  {
+   "description": "Auto Fetch from Delivery Note -> item table-> Incoming Rate",
+   "fieldname": "tv_landing_cost",
+   "fieldtype": "Int",
+   "label": "TV Landing Cost",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_qtwv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "From Delivery Note",
+   "fieldname": "serial_no",
+   "fieldtype": "Link",
+   "label": "Serial No.",
+   "options": "Serial No",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "subscription_id.posting_date",
+   "fieldname": "purchase_date",
+   "fieldtype": "Date",
+   "label": "Invoice Date",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "subscription_id.custom_actual_installation_date",
+   "fieldname": "installation_date",
+   "fieldtype": "Date",
+   "label": "Installation Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Warranty Plan",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "section_break_vwjy",
+   "fieldtype": "Section Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "description": "Fetched from GET Request",
+   "fieldname": "warranty_id",
+   "fieldtype": "Data",
+   "label": "Warranty ID"
+  },
+  {
+   "fieldname": "column_break_gnta",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "description": "Fetched from GET Request",
+   "fieldname": "warranty_start_date",
+   "fieldtype": "Date",
+   "label": "Warranty Start Date"
+  },
+  {
+   "fieldname": "column_break_efwy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "description": "Fetched from GET Request",
+   "fieldname": "warranty_end_date",
+   "fieldtype": "Date",
+   "label": "Warranty End Date"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-07-09 22:13:40.787156",
+ "modified_by": "Administrator",
+ "module": "Warranty Integration",
+ "name": "Warranty Plan",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

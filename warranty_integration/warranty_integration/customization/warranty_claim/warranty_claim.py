@@ -7,7 +7,7 @@ import re
 import requests, json
 from requests.exceptions import HTTPError 
 
-def on_submit(doc,method=None):
+def validate(doc,method=None):
     headers = {
         'X-API-Key': 'asdtfyghjklcghvhbjknlmfxcghbjknlmgcvhbjnkml'
     }

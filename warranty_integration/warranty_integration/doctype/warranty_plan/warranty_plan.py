@@ -17,7 +17,7 @@ class WarrantyPlan(Document):
             'X-API-Key': 'asdtfyghjklcghvhbjknlmfxcghbjknlmgcvhbjnkml'
 		}
 		body = {
-			"action": "CREATE WARRANTY CLAIM",
+			"action": "CREATE WARRANTY PLAN",
 		}
 		body.update(
 			{

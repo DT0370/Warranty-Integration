@@ -131,7 +131,7 @@ app_license = "mit"
 # }
 doc_events = {
     "Warranty Claim": {
-        "on_submit":"warranty_integration.warranty_integration.customization.warranty_claim.warranty_claim.on_submit"
+        "validate":"warranty_integration.warranty_integration.customization.warranty_claim.warranty_claim.validate"
     }
 }
 

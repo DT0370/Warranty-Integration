@@ -13,12 +13,15 @@ from requests.exceptions import HTTPError
 
 class WarrantyPlan(Document):
 	def on_submit(self):
+		warranty_settings = frappe.get_doc('Extended Warranty Integration Settings')
 		headers = {
-            'X-API-Key': 'asdtfyghjklcghvhbjknlmfxcghbjknlmgcvhbjnkml'
+            warranty_settings.api_key: warranty_settings.api_secret
 		}
 		body = {
 			"action": "CREATE WARRANTY PLAN",
 		}
+		sample_date = datetime.now()
+
 		body.update(
 			{
 				"FirstName":self.customer_name,
@@ -30,8 +33,8 @@ class WarrantyPlan(Document):
 				"Model":self.item_code,
 				"SerialNumber":self.serial_no,
 				"Plan":self.warranty_plan_type,
-				"InvoiceDate":datetime.strptime(self.purchase_date, "%Y-%m-%d").isoformat(),
-				"InstallationDate":datetime.strptime(self.installation_date, "%Y-%m-%d").isoformat(),
+				"InvoiceDate": self.purchase_date.isoformat() if type(self.purchase_date) == type(sample_date.date()) else datetime.strptime(self.purchase_date, "%Y-%m-%d").isoformat(),
+				"InstallationDate": self.installation_date.isoformat() if type(self.installation_date) == type(sample_date.date()) else datetime.strptime(self.installation_date, "%Y-%m-%d").isoformat(),
 				"TVLandingCost": str(self.tv_landing_cost)
 			}
 		)
@@ -43,9 +46,9 @@ class WarrantyPlan(Document):
 		webhook_log.headers = str(headers)
 		webhook_log.data = str(json.dumps(body))
 		webhook_log.user = self.modified_by
-		webhook_log.url = 'https://extracare.co.in/360/api/product/create'
+		webhook_log.url = warranty_settings.base_url
 		try:
-			response = requests.post('https://extracare.co.in/360/api/product/create',headers=headers,data=json.dumps(body))
+			response = requests.post(warranty_settings.base_url,headers=headers,data=json.dumps(body))
 			webhook_log.response = response
 			
 		except HTTPError as http_err:

@@ -8,8 +8,9 @@ import requests, json
 from requests.exceptions import HTTPError 
 
 def validate(doc,method=None):
+    warranty_settings = frappe.get_doc('Extended Warranty Integration Settings')
     headers = {
-        'X-API-Key': 'asdtfyghjklcghvhbjknlmfxcghbjknlmgcvhbjnkml'
+        warranty_settings.api_key_claim: warranty_settings.api_secret_claim
     }
     body = {
         "action": "CREATE WARRANTY CLAIM",
@@ -38,9 +39,9 @@ def validate(doc,method=None):
     webhook_log.headers = str(headers)
     webhook_log.data = str(json.dumps(body))
     webhook_log.user = doc.modified_by
-    webhook_log.url = 'https://www.warrantyindia.com/360/apiclaim/product/create.php'
+    webhook_log.url = warranty_settings.base_url_claim
     try:
-        response = requests.post('https://www.warrantyindia.com/360/apiclaim/product/create.php',headers=headers,data=json.dumps(body))
+        response = requests.post(warranty_settings.base_url_claim,headers=headers,data=json.dumps(body))
         webhook_log.response = response
         
     except HTTPError as http_err:

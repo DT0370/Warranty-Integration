@@ -5,9 +5,14 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "warranty_plan_section",
   "base_url",
   "api_key",
-  "api_secret"
+  "api_secret",
+  "warranty_claim_section",
+  "base_url_claim",
+  "api_key_claim",
+  "api_secret_claim"
  ],
  "fields": [
   {
@@ -24,12 +29,37 @@
    "fieldname": "api_secret",
    "fieldtype": "Data",
    "label": "API Secret"
+  },
+  {
+   "fieldname": "warranty_plan_section",
+   "fieldtype": "Section Break",
+   "label": "Warranty Plan"
+  },
+  {
+   "fieldname": "warranty_claim_section",
+   "fieldtype": "Section Break",
+   "label": "Warranty Claim"
+  },
+  {
+   "fieldname": "base_url_claim",
+   "fieldtype": "Data",
+   "label": "Base URL"
+  },
+  {
+   "fieldname": "api_key_claim",
+   "fieldtype": "Data",
+   "label": "API Key"
+  },
+  {
+   "fieldname": "api_secret_claim",
+   "fieldtype": "Data",
+   "label": "API Secret"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2024-07-17 22:46:13.355803",
+ "modified": "2024-07-18 22:19:49.472891",
  "modified_by": "Administrator",
  "module": "Warranty Integration",
  "name": "Extended Warranty Integration Settings",

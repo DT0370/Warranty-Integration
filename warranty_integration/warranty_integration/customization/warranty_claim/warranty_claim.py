@@ -17,18 +17,18 @@ def validate(doc,method=None):
     }
     body ={
         "PolicyNo": doc.custom_policy_no,
+        "Status": doc.status,
+        "IncidentNumber": doc.name,
         "FirstName": doc.customer_name,
         "LastName":"",
         "CustomerEmail":doc.contact_email,
         "CustomerPhone":doc.contact_mobile,
-        "address":doc.address_display,
-        "State":doc.custom_state,
-        "Landmark":doc.custom_landmark,
+        "address":doc.address_display + ", " + doc.custom_state + ", " + doc.custom_landmark,
         "Model":doc.item_code,
         "SerialNumber":doc.serial_no,
         "PartFailure":doc.complaint,
-        "EWEndDate": doc.custom_ew_end_date.isoformat(),
-        "Status":"Active"
+        "Level1TroubleshootingDetails":doc.custom_level1_troubleshooting_details,
+        "Level2TroubleshootingDetails":doc.custom_level2_troubleshooting_details,
         }
     
     # print("body json= ",json.dumps(body))

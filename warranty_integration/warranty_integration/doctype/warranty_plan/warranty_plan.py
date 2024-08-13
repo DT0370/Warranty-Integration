@@ -62,6 +62,6 @@ class WarrantyPlan(Document):
 def update_warranty_plan(self,data):
 	self.warranty_start_date = datetime.strptime(data.get("Warranty Start Date"), "%d-%m-%Y")
 	self.warranty_end_date = datetime.strptime(data.get("Warranty End Date"), "%d-%m-%Y")
-	self.warranty_id = data.get("PolicyNo")
+	self.warranty_id = data.get("Warranty Id")
 	self.save()
 	self.reload()

@@ -23,15 +23,16 @@ def validate(doc,method=None):
         "LastName":"",
         "CustomerEmail":doc.contact_email,
         "CustomerPhone":doc.contact_mobile,
-        "address":doc.address_display,
+        "address":doc.service_address or doc.address_display,
         "State":doc.custom_state,
         "Landmark":doc.custom_landmark,
         "Model":doc.item_code,
         "SerialNumber":doc.serial_no,
-        "PartFailure":doc.complaint,
+        "Issue":doc.complaint,
         "EWEndDate": doc.custom_ew_end_date.isoformat(),
         "Level1TroubleshootingDetails":doc.custom_level1_troubleshooting_details,
         "Level2TroubleshootingDetails":doc.custom_level2_troubleshooting_details,
+        "Status": doc.status
         }
     
     # print("body json= ",json.dumps(body))
@@ -50,5 +51,5 @@ def validate(doc,method=None):
     except HTTPError as http_err:
         webhook_log.error = http_err
         frappe.throw(_("HTTP Error {0}".format(http_err)))
-    # print("\n\n\nResponse >>> ",response)
+    # print("\n\n\nResponse >>> ",response.json())
     webhook_log.insert()

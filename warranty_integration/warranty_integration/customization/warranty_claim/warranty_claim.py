@@ -47,9 +47,9 @@ def validate(doc,method=None):
     try:
         response = requests.post(warranty_settings.base_url_claim,headers=headers,data=json.dumps(body))
         webhook_log.response = response
+        webhook_log.message = str(response.json())
         
     except HTTPError as http_err:
         webhook_log.error = http_err
         frappe.throw(_("HTTP Error {0}".format(http_err)))
-    # print("\n\n\nResponse >>> ",response.json())
     webhook_log.insert()

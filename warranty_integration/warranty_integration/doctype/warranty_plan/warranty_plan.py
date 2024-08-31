@@ -38,8 +38,7 @@ class WarrantyPlan(Document):
 				"TVLandingCost": str(self.tv_landing_cost)
 			}
 		)
-		# print("body json= ",json.dumps(body))
-# 		# Make the POST request
+ 		# Make the POST request
 		webhook_log = frappe.new_doc("Extended Warranty Request Log")
 		webhook_log.request_for = "CREATE WARRANTY CLAIM"
 		webhook_log.reference_document = self.name
@@ -50,11 +49,11 @@ class WarrantyPlan(Document):
 		try:
 			response = requests.post(warranty_settings.base_url,headers=headers,data=json.dumps(body))
 			webhook_log.response = response
+			webhook_log.message = str(response.json())
 			
 		except HTTPError as http_err:
 			webhook_log.error = http_err
 			frappe.throw(_("HTTP Error {0}".format(http_err)))
-		# print("\n\n\nResponse >>> ",response.json())
 		update_warranty_plan(self,response.json())
 		webhook_log.insert()
 

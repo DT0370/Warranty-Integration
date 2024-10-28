@@ -51,7 +51,7 @@
    "fieldname": "customer_email",
    "fieldtype": "Data",
    "label": "Customer Email",
-   "reqd": 1
+   "reqd": 0
   },
   {
    "description": "Pull from Customer-Address",

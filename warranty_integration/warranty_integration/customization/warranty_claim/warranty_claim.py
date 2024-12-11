@@ -32,8 +32,10 @@ def validate(doc,method=None):
         "EWEndDate": doc.custom_ew_end_date.isoformat(),
         "Level1TroubleshootingDetails":doc.custom_level1_troubleshooting_details,
         "Level2TroubleshootingDetails":doc.custom_level2_troubleshooting_details,
-        "Status": doc.status
-        }
+        "Status": doc.status,
+        "Customer_CRN" : doc.customer,
+        "DN_Number" : doc.custom_subscription_id
+    }
     
     # print("body json= ",json.dumps(body))
     # Make the POST request

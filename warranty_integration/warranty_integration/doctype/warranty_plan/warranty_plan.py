@@ -24,15 +24,17 @@ class WarrantyPlan(Document):
 
 		body.update(
 			{
-				"FirstName":self.customer_name,
-				"LastName":"test",
+				"FirstName": self.customer_name,
+				"LastName": "test",
 				"CustomerEmail": self.customer_email,
 				"CustomerPhone": self.customer_phone,
 				"address": self.address_display,
-				"State":self.state,
-				"Model":self.item_code,
-				"SerialNumber":self.serial_no,
-				"Plan":self.warranty_plan_type,
+				"State": self.state,
+				"Model": self.item_code,
+				"Customer_CRN": self.customer,
+				"DN_Number": self.subscription_id,
+				"SerialNumber": self.serial_no,
+				"Plan": self.warranty_plan_type,
 				"InvoiceDate": self.purchase_date.isoformat() if type(self.purchase_date) == type(sample_date.date()) else datetime.strptime(self.purchase_date, "%Y-%m-%d").isoformat(),
 				"InstallationDate": self.installation_date.isoformat() if type(self.installation_date) == type(sample_date.date()) else datetime.strptime(self.installation_date, "%Y-%m-%d").isoformat(),
 				"TVLandingCost": str(self.tv_landing_cost)

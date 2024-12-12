@@ -31,8 +31,6 @@ class WarrantyPlan(Document):
 				"address": self.address_display,
 				"State": self.state,
 				"Model": self.item_code,
-				"Customer_CRN": self.customer,
-				"DN_Number": self.subscription_id,
 				"SerialNumber": self.serial_no,
 				"Plan": self.warranty_plan_type,
 				"InvoiceDate": self.purchase_date.isoformat() if type(self.purchase_date) == type(sample_date.date()) else datetime.strptime(self.purchase_date, "%Y-%m-%d").isoformat(),
